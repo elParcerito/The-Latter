@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Latter - Questions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .controls {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .question-group {
+      margin-bottom: 2rem;
+      border-left: 5px solid;
+      padding-left: 1rem;
+    }
+    .easy { border-color: green; }
+    .medium { border-color: goldenrod; }
+    .hard { border-color: red; }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">Questions and Answers</h1>
+  <div class="controls">
+    <button onclick="toggleLanguage()">🌐 Change Language</button>
+    <a href="index.html">🔙 Back to Rules</a>
+  </div>
+
+  <div id="questions-container"></div>
+
+  <script>
+    const questionsData = {
+      en: {
+        easy: [
+          ["What color is the sky?", "Blue"],
+          ["How many legs does a dog have?", "4"],
+          ["What’s 2 + 2?", "4"],
+          ["What sound does a cat make?", "Meow"],
+          ["What planet do we live on?", "Earth"],
+          ["What shape has 3 sides?", "Triangle"],
+          ["Which animal barks?", "Dog"],
+          ["What do you drink in the morning?", "Milk"],
+          ["What is frozen water called?", "Ice"],
+          ["What color are bananas?", "Yellow"],
+          ["How many fingers on one hand?", "5"],
+          ["What do bees make?", "Honey"],
+          ["What animal says 'moo'?", "Cow"],
+          ["How many days in a week?", "7"],
+          ["Where do fish live?", "In water"]
+        ],
+        medium: [
+          ["What country is the Eiffel Tower in?", "France"],
+          ["What’s the capital of Spain?", "Madrid"],
+          ["Who painted the Mona Lisa?", "Leonardo da Vinci"],
+          ["Which planet is known for rings?", "Saturn"],
+          ["What gas do we breathe in?", "Oxygen"],
+          ["What do plants need to grow?", "Sunlight"],
+          ["What is H2O?", "Water"],
+          ["What’s the main language in Brazil?", "Portuguese"],
+          ["What month has Halloween?", "October"],
+          ["Who is the main character in Harry Potter?", "Harry Potter"],
+          ["What sport uses a bat and ball?", "Baseball"],
+          ["What do you use to write on a blackboard?", "Chalk"],
+          ["What is 10 x 2?", "20"],
+          ["Where is Mount Everest?", "Asia"],
+          ["What color is a stop sign?", "Red"]
+        ],
+        hard: [
+          ["Who discovered gravity?", "Isaac Newton"],
+          ["What’s the capital of Iceland?", "Reykjavik"],
+          ["What element is Au on the periodic table?", "Gold"],
+          ["Who wrote 'Romeo and Juliet'?", "William Shakespeare"],
+          ["What’s the longest river in the world?", "Nile"],
+          ["Who invented the telephone?", "Alexander Graham Bell"],
+          ["Which war ended in 1945?", "World War II"],
+          ["What’s the square root of 144?", "12"],
+          ["What country has the most people?", "China"],
+          ["How many bones in the human body?", "206"],
+          ["Who painted The Starry Night?", "Vincent van Gogh"],
+          ["What is the largest ocean?", "Pacific Ocean"],
+          ["What’s the hardest natural substance?", "Diamond"],
+          ["Who developed the theory of relativity?", "Albert Einstein"],
+          ["What is the capital of Australia?", "Canberra"]
+        ]
+      },
+      es: {
+        easy: [
+          ["¿De qué color es el cielo?", "Azul"],
+          ["¿Cuántas patas tiene un perro?", "4"],
+          ["¿Cuánto es 2 + 2?", "4"],
+          ["¿Qué sonido hace un gato?", "Miau"],
+          ["¿En qué planeta vivimos?", "Tierra"],
+          ["¿Qué figura tiene 3 lados?", "Triángulo"],
+          ["¿Qué animal ladra?", "Perro"],
+          ["¿Qué bebes por la mañana?", "Leche"],
+          ["¿Cómo se llama el agua congelada?", "Hielo"],
+          ["¿De qué color son los plátanos?", "Amarillo"],
+          ["¿Cuántos dedos hay en una mano?", "5"],
+          ["¿Qué hacen las abejas?", "Miel"],
+          ["¿Qué animal dice 'muu'?", "Vaca"],
+          ["¿Cuántos días tiene una semana?", "7"],
+          ["¿Dónde viven los peces?", "En el agua"]
+        ],
+        medium: [
+          ["¿En qué país está la Torre Eiffel?", "Francia"],
+          ["¿Cuál es la capital de España?", "Madrid"],
+          ["¿Quién pintó la Mona Lisa?", "Leonardo da Vinci"],
+          ["¿Qué planeta tiene anillos?", "Saturno"],
+          ["¿Qué gas respiramos?", "Oxígeno"],
+          ["¿Qué necesitan las plantas para crecer?", "Luz solar"],
+          ["¿Qué es H2O?", "Agua"],
+          ["¿Cuál es el idioma principal de Brasil?", "Portugués"],
+          ["¿En qué mes es Halloween?", "Octubre"],
+          ["¿Quién es el personaje principal en Harry Potter?", "Harry Potter"],
+          ["¿Qué deporte usa bate y pelota?", "Béisbol"],
+          ["¿Qué usas para escribir en una pizarra?", "Tiza"],
+          ["¿Cuánto es 10 x 2?", "20"],
+          ["¿Dónde está el Monte Everest?", "Asia"],
+          ["¿De qué color es una señal de alto?", "Rojo"]
+        ],
+        hard: [
+          ["¿Quién descubrió la gravedad?", "Isaac Newton"],
+          ["¿Cuál es la capital de Islandia?", "Reikiavik"],
+          ["¿Qué elemento es Au en la tabla periódica?", "Oro"],
+          ["¿Quién escribió 'Romeo y Julieta'?", "William Shakespeare"],
+          ["¿Cuál es el río más largo del mundo?", "Nilo"],
+          ["¿Quién inventó el teléfono?", "Alexander Graham Bell"],
+          ["¿Qué guerra terminó en 1945?", "Segunda Guerra Mundial"],
+          ["¿Cuál es la raíz cuadrada de 144?", "12"],
+          ["¿Qué país tiene más personas?", "China"],
+          ["¿Cuántos huesos tiene el cuerpo humano?", "206"],
+          ["¿Quién pintó La noche estrellada?", "Vincent van Gogh"],
+          ["¿Cuál es el océano más grande?", "Pacífico"],
+          ["¿Cuál es la sustancia natural más dura?", "Diamante"],
+          ["¿Quién desarrolló la teoría de la relatividad?", "Albert Einstein"],
+          ["¿Cuál es la capital de Australia?", "Canberra"]
+        ]
+      }
+    };
+
+    let currentLang = 'en';
+
+    function renderQuestions() {
+      const container = document.getElementById('questions-container');
+      const langData = questionsData[currentLang];
+      const levels = ['easy', 'medium', 'hard'];
+      const titles = {
+        en: ['Easy (Green)', 'Medium (Yellow)', 'Hard (Red)'],
+        es: ['Fácil (Verde)', 'Medio (Amarillo)', 'Difícil (Rojo)']
+      };
+
+      document.getElementById("title").textContent = currentLang === 'en' ? 'Questions and Answers' : 'Preguntas y Respuestas';
+      container.innerHTML = '';
+
+      levels.forEach((level, idx) => {
+        const section = document.createElement('div');
+        section.className = `question-group ${level}`;
+        const title = document.createElement('h2');
+        title.textContent = titles[currentLang][idx];
+        section.appendChild(title);
+
+        const list = document.createElement('ul');
+        langData[level].forEach(([q, a]) => {
+          const li = document.createElement('li');
+          li.innerHTML = `<span class="label">${q}</span> - ${a}`;
+          list.appendChild(li);
+        });
+        section.appendChild(list);
+        container.appendChild(section);
+      });
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'es' : 'en';
+      renderQuestions();
+    }
+
+    renderQuestions();
+  </script>
+</body>
+</html>
