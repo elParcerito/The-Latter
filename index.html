@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Latter - Game Rules</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      color: #444;
+    }
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    button {
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      background-color: #444;
+      color: white;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #666;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">The Latter – Game Rules</h1>
+  </header>
+
+  <div class="container">
+    <div class="button-group">
+      <button onclick="toggleLanguage()">🌐 Change Language</button>
+      <button onclick="location.href='questions.html'">📋 Go to Questions</button>
+    </div>
+
+    <div id="rules">
+      <h2>🎯 Objective</h2>
+      <p>Be the team or player with the most points by answering questions correctly from different levels: Easy, Medium, and Hard.</p>
+
+      <h2>🟢 Levels of Difficulty</h2>
+      <ul>
+        <li><strong>Green (Easy)</strong> – 1 point</li>
+        <li><strong>Yellow (Medium)</strong> – 3 points</li>
+        <li><strong>Red (Hard)</strong> – 5 points</li>
+      </ul>
+
+      <h2>👥 Number of Players</h2>
+      <p>Minimum 2 players or 2 teams.</p>
+
+      <h2>▶️ How to Play</h2>
+      <ol>
+        <li>One player selects a card (or question) from any level.</li>
+        <li>The host or game master reads the question aloud.</li>
+        <li>The player/team has <strong>10 seconds</strong> to answer.</li>
+        <li>If correct → they earn points based on difficulty.</li>
+        <li>If incorrect → no points, and the turn passes to the next player/team.</li>
+      </ol>
+
+      <h2>⏱️ Time Limit</h2>
+      <p>Each player/team has <strong>10 seconds</strong> per question.</p>
+
+      <h2>🧠 Special Rule</h2>
+      <p>Each team may <strong>skip</strong> one question per game <strong>without penalty</strong>.</p>
+
+      <h2>🏆 Winning</h2>
+      <p>The first team to reach <strong>30 points</strong> wins the game.</p>
+    </div>
+  </div>
+
+  <script>
+    let isEnglish = true;
+    function toggleLanguage() {
+      isEnglish = !isEnglish;
+      const title = document.getElementById('title');
+      const rules = document.getElementById('rules');
+      if (!isEnglish) {
+        title.innerText = "The Latter – Reglas del Juego";
+        rules.innerHTML = `
+          <h2>🎯 Objetivo</h2>
+          <p>Ser el equipo o jugador con más puntos respondiendo preguntas de diferentes niveles: Fácil, Medio y Difícil.</p>
+
+          <h2>🟢 Niveles de Dificultad</h2>
+          <ul>
+            <li><strong>Verde (Fácil)</strong> – 1 punto</li>
+            <li><strong>Amarillo (Medio)</strong> – 3 puntos</li>
+            <li><strong>Rojo (Difícil)</strong> – 5 puntos</li>
+          </ul>
+
+          <h2>👥 Número de Jugadores</h2>
+          <p>Mínimo 2 jugadores o 2 equipos.</p>
+
+          <h2>▶️ Cómo Jugar</h2>
+          <ol>
+            <li>Un jugador elige una carta (o pregunta) de cualquier nivel.</li>
+            <li>El anfitrión o moderador lee la pregunta en voz alta.</li>
+            <li>El jugador o equipo tiene <strong>10 segundos</strong> para responder.</li>
+            <li>Si responde bien → gana puntos según la dificultad.</li>
+            <li>Si falla → no gana puntos y el turno pasa al siguiente equipo.</li>
+          </ol>
+
+          <h2>⏱️ Tiempo Límite</h2>
+          <p>Cada jugador o equipo tiene <strong>10 segundos</strong> por pregunta.</p>
+
+          <h2>🧠 Regla Especial</h2>
+          <p>Cada equipo puede <strong>pasar</strong> una pregunta por partida <strong>sin penalización</strong>.</p>
+
+          <h2>🏆 Cómo Ganar</h2>
+          <p>El primer equipo en llegar a <strong>30 puntos</strong> gana la partida.</p>
+        `;
+      } else {
+        location.reload(); // Reload to return to original English
+      }
+    }
+  </script>
+</body>
+</html>
